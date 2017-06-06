@@ -46,7 +46,7 @@ INSERT INTO employees VALUES (7934,'MILLER','CLERK',7782,to_date('23-1-1982','dd
 
 COMMIT;
 
---------------------------------------------------------------------------------
+------------------------------------ Wildcard "*" --------------------------------------------
 
 
 SELECT *
@@ -57,6 +57,75 @@ SELECT *
 FROM   employees
 ORDER BY employee_id;
 
+SELECT e.*, d.*
+FROM   employees e
+       JOIN departments d ON d.department_id = e.department_id
+ORDER BY e.employee_id;
+
+--------------------------------- Columns -----------------------------------------------
+
+SELECT employee_id, employee_name
+FROM   employees
+ORDER BY employee_id;
+
+----------------------------------- Column Aliases ---------------------------------------------
+
+SELECT employee_id AS employee_no, employee_name AS "Name"
+FROM   employees
+ORDER BY employee_id;
+
+-------------------------------- Table Aliases ------------------------------------------------
+
+SELECT e.employee_id,
+       e.employee_name,
+       d.department_id,
+       d.department_name
+FROM   employees e
+       JOIN departments d ON e.department_id = d.department_id
+ORDER BY e.employee_id;
+
+SELECT employees.employee_id,
+       employees.employee_name,
+       departments.department_id,
+       departments.department_name
+FROM   employees
+       JOIN departments ON employees.department_id = departments.department_id
+ORDER BY employees.employee_id;
+
+--------------------------------- Functions -----------------------------------------------
+
+SELECT UPPER('lowercase text') AS text
+FROM   dual;
+
+------------------------------------- Expressions -------------------------------------------
+
+SELECT 1+2 AS addition
+FROM   dual;
+
+--------------------------------- Scalar Subqueries -----------------------------------------------
+
+SELECT d.department_id, d.department_name,
+       (SELECT COUNT(*) FROM employees e WHERE e.department_id = d.department_id) AS emp_count
+FROM   departments d
+ORDER BY d.department_id;
+
+--  The data from the previous example might be better sourced using the following query.
+
+SELECT d.department_id, d.department_name, COUNT(e.employee_id) AS emp_count
+FROM   departments d
+       LEFT OUTER JOIN employees e ON d.department_id = e.department_id
+GROUP BY d.department_id, d.department_name
+ORDER BY d.department_id;
+
+--------------------------------------------------------------------------------
+--------------------------------------------------------------------------------
+--------------------------------------------------------------------------------
+--------------------------------------------------------------------------------
+--------------------------------------------------------------------------------
+--------------------------------------------------------------------------------
+--------------------------------------------------------------------------------
+--------------------------------------------------------------------------------
+--------------------------------------------------------------------------------
 --------------------------------------------------------------------------------
 --------------------------------------------------------------------------------
 --------------------------------------------------------------------------------
