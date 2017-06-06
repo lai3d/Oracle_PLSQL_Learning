@@ -253,7 +253,8 @@ FROM dual;
 SELECT SYS_EXTRACT_UTC(SYSTIMESTAMP)  -- 06-JUN-17 07.07.36.290575000 AM
 FROM dual;
 
-
+SELECT EXTRACT(HOUR FROM SYSTIMESTAMP) -- 7
+FROM dual;
 
 -------------------------  Interval  -----------------------------
 
