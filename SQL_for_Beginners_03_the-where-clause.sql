@@ -84,14 +84,32 @@ WHERE  department_id NOT BETWEEN 20 AND 40
 ORDER BY d.department_id;
 
 -------------------------------------- LIKE and NOT LIKE Conditions ------------------------------------------
+-- The '%' is a variable length wildcard. The '_' is a single character wildcard.
 
 SELECT d.department_id, d.department_name
 FROM   departments d
-WHERE  department_name LIKE '%O%'
+WHERE  department_name LIKE '%O%' -- as long as the name includes the character 'O'
 ORDER BY d.department_id;
 
---------------------------------------  ------------------------------------------
+SELECT d.department_id, d.department_name
+FROM   departments d
+WHERE  department_name NOT LIKE '%O%'
+ORDER BY d.department_id;
 
+-------------------------------------- OR Condition ------------------------------------------
+
+SELECT e.employee_id, e.employee_name, e.department_id, e.salary, e.job
+FROM   employees e
+WHERE  e.department_id = 20
+AND    e.job = 'MANAGER'
+OR     e.job = 'CLERK'
+ORDER BY e.employee_id;
+
+SELECT e.employee_id, e.employee_name, e.department_id, e.salary, e.job
+FROM   employees e
+WHERE  e.department_id = 20
+AND    (e.job = 'MANAGER' OR e.job = 'CLERK')
+ORDER BY e.employee_id;
 
 --------------------------------------  ------------------------------------------
 

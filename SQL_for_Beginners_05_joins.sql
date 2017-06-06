@@ -1,6 +1,35 @@
+-- https://oracle-base.com/articles/misc/sql-for-beginners-joins
 
---------------------------------------  ------------------------------------------
+/*
 
+Some join methods are more popular than others, so initially focus your attention on those you are most likely to see. The most common joins you are likely to see in code are the following.
+
+[INNER] JOIN ... ON
+LEFT [OUTER] JOIN
+RIGHT [OUTER] JOIN
+
+The following are less common.
+
+FULL [OUTER] JOIN
+CROSS JOIN
+NATURAL JOIN
+[INNER] JOIN ... USING
+
+The following are very rare at this point.
+
+CROSS APPLY
+OUTER APPLY
+
+*/
+
+-------------------------------------- [INNER] JOIN ... ON ------------------------------------------
+
+SELECT d.department_name,
+       e.employee_name
+FROM   departments d
+       JOIN employees e ON d.department_id = e.department_id
+WHERE  d.department_id >= 30
+ORDER BY d.department_name;
 
 --------------------------------------  ------------------------------------------
 
