@@ -108,8 +108,24 @@ ORA-00904: "DEPARTMENT_ID": invalid identifier
 Error at Line: 101 Column: 10
 */
 
---------------------------------------  ------------------------------------------
+-------------------------------------- Data Types ------------------------------------------
 
+SELECT TO_CHAR(employee_id) AS employee_id, employee_name
+FROM   employees
+WHERE  department_id = 10
+UNION ALL
+SELECT department_id, department_name
+FROM   departments
+WHERE  department_id >= 20
+ORDER BY 1;
+
+/*
+ORA-01790: expression must have same datatype as corresponding expression
+01790. 00000 -  "expression must have same datatype as corresponding expression"
+*Cause:    
+*Action:
+Error at Line: 113 Column: 8
+*/
 
 --------------------------------------  ------------------------------------------
 
